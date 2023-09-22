@@ -14,9 +14,9 @@ public class SettingVC: UIViewController, Instantiable {
     @IBOutlet weak var settingTableView : UITableView!
     
     //--- private
-    var dataSoure  = ShareConstant.shared.mg002Data.c_menu_info.SET_MNU_LIST
+    public var dataSoure  = ShareConstant.shared.mg002Data.c_menu_info.SET_MNU_LIST
     
-    var itemData    : MG002Model.MainTabMnuList?
+    public var itemData    : MG002Model.MainTabMnuList?
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
