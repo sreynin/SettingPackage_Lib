@@ -14,9 +14,9 @@ public class SettingVC: UIViewController, Instantiable {
     @IBOutlet weak var settingTableView : UITableView!
     
     //--- private
-    public var dataSoure  = ShareConstant.shared.mg002Data.c_menu_info.SET_MNU_LIST
+    public var dataSoure : [SetMnuList]?
     
-    public var itemData    : MG002Model.MainTabMnuList?
+    //public var itemData    : MG002Model.MainTabMnuList?
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -83,20 +83,20 @@ public class SettingVC: UIViewController, Instantiable {
 extension SettingVC: UITableViewDataSource, UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSoure.count
+        return dataSoure?.count ?? 0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = dataSoure[indexPath.row]
-        if item.c_mnu_nm == "버전정보" {
+        let item = dataSoure?[indexPath.row]
+        if item?.c_mnu_nm ?? "" == "버전정보" {
             let versionSettingCell = tableView.dequeueReusableCell(withIdentifier: "SETTING_VERSION_CELLID", for: indexPath) as! VersionSettingCustomCell
-            versionSettingCell.renderInfo(titleSt: item.c_mnu_nm)
+            versionSettingCell.renderInfo(titleSt: item?.c_mnu_nm ?? "")
             versionSettingCell.isUserInteractionEnabled = false
             return versionSettingCell
         } else {
             let settingCell = tableView.dequeueReusableCell(withIdentifier: "SETTING_CELLID", for: indexPath) as! SettingCustomCell
 //            settingCell.renderCell(item: item)
-            settingCell.settingNameLb.text  = item.c_mnu_nm
+            settingCell.settingNameLb.text  = item?.c_mnu_nm ?? ""
             return settingCell
         }
         
