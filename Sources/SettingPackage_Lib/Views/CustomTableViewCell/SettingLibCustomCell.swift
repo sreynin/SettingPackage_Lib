@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class SettingCustomCell: UITableViewCell {
+public class SettingLibCustomCell: UITableViewCell {
 
     @IBOutlet weak var settingNameLb: DynamicLabelSizeClass!
     @IBOutlet weak var moreSignImg: UIImageView!
@@ -18,7 +18,7 @@ public class SettingCustomCell: UITableViewCell {
     
 }
 
-public class VersionSettingCustomCell: UITableViewCell {
+public class VersionSettingLibCustomCell: UITableViewCell {
     
     @IBOutlet weak var settingNameLb: DynamicLabelSizeClass!
     @IBOutlet weak var versionLb: DynamicLabelSizeClass!
