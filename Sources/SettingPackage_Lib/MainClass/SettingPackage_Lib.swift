@@ -3,10 +3,10 @@ public struct SettingPackage_Lib {
 
     public init() {
     }
-    public func createSettingVc()-> SettingVC {
-        return SettingVC.instantiateFromStoryboard()
+    public func createSettingVc(data:[SetMnuList])-> SettingVC {
+        let settingVC = SettingVC.instantiateFromStoryboard()
+        settingVC.dataSoure = data
+        return settingVC
     }
-    public func setShareConstantData(data:MG002Model.TranResData){
-        ShareConstant.shared.mg002Data = data
-    }
+    
 }
