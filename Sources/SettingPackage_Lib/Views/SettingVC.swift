@@ -89,12 +89,12 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = dataSoure?[indexPath.row]
         if item?.c_mnu_nm ?? "" == "버전정보" {
-            let versionSettingCell = tableView.dequeueReusableCell(withIdentifier: "SETTING_VERSION_CELLID", for: indexPath) as! VersionSettingCustomCell
+            let versionSettingCell = tableView.dequeueReusableCell(withIdentifier: "SETTING_VERSION_CELLID", for: indexPath) as! VersionSettingLibCustomCell
             versionSettingCell.renderInfo(titleSt: item?.c_mnu_nm ?? "")
             versionSettingCell.isUserInteractionEnabled = false
             return versionSettingCell
         } else {
-            let settingCell = tableView.dequeueReusableCell(withIdentifier: "SETTING_CELLID", for: indexPath) as! SettingCustomCell
+            let settingCell = tableView.dequeueReusableCell(withIdentifier: "SETTING_CELLID", for: indexPath) as! SettingLibCustomCell
 //            settingCell.renderCell(item: item)
             settingCell.settingNameLb.text  = item?.c_mnu_nm ?? ""
             return settingCell

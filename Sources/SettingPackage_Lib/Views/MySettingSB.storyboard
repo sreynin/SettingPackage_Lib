@@ -33,7 +33,7 @@
                                 <rect key="frame" x="0.0" y="67" width="393" height="751"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SETTING_CELLID" rowHeight="52" id="qHe-0c-3Dd" customClass="SettingCustomCell" customModule="changwon" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SETTING_CELLID" rowHeight="52" id="qHe-0c-3Dd" customClass="SettingLibCustomCell" customModule="SettingPackage_Lib">
                                         <rect key="frame" x="0.0" y="50" width="393" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qHe-0c-3Dd" id="Tut-Za-SNB">
@@ -76,7 +76,7 @@
                                             <outlet property="settingNameLb" destination="MLg-lQ-1af" id="YNk-tr-mVx"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SETTING_VERSION_CELLID" rowHeight="52" id="OYP-1e-sxq" customClass="VersionSettingCustomCell" customModule="changwon" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SETTING_VERSION_CELLID" rowHeight="52" id="OYP-1e-sxq" customClass="VersionSettingLibCustomCell" customModule="SettingPackage_Lib">
                                         <rect key="frame" x="0.0" y="102" width="393" height="52"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OYP-1e-sxq" id="GQ0-Cf-4Fn">
@@ -97,7 +97,7 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V1.0.01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3N-iX-OTM">
-                                                    <rect key="frame" x="311" y="17.666666666666668" width="56" height="17.000000000000004"/>
+                                                    <rect key="frame" x="311.33333333333331" y="17.666666666666668" width="55.666666666666686" height="17.000000000000004"/>
                                                     <fontDescription key="fontDescription" name="NanumSquareOTF_acB" family="NanumSquareOTF_ac" pointSize="15"/>
                                                     <color key="textColor" red="0.35686274509999999" green="0.41960784309999999" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
