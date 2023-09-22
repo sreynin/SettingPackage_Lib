@@ -3,4 +3,7 @@ public struct SettingPackage_Lib {
 
     public init() {
     }
+    public func createSettingVc()-> SettingVC {
+        return SettingVC.instantiateFromStoryboard()
+    }
 }

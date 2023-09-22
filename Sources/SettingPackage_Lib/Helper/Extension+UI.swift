@@ -102,6 +102,28 @@ extension UIViewController {
             break
         }
     }
+  public func alertMessage(title: String? = "안내", message: String?, action: ((UIAlertAction) -> Void)?) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let confirmAction = UIAlertAction(title: "확인", style: .default, handler: action)
+            alert.addAction(confirmAction)
+            
+            /* replace info
+             if let currentAlert = self.presentedViewController as? UIAlertController {
+             currentAlert.title = title
+             currentAlert.message = message
+             return
+             } */
+            
+            if self.presentedViewController != nil {
+                self.presentedViewController?.dismiss(animated: true, completion: {
+                    self.present(alert, animated: true)
+                })
+            } else {
+                self.present(alert, animated: true)
+            }
+        }
+    }
 }
 extension UIColor {
     

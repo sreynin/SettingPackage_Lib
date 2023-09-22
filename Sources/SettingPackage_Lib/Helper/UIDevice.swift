@@ -7,8 +7,48 @@
 
 import Foundation
 import UIKit
-
+import LocalAuthentication
+public enum BiometryType: String {
+    case none = "None"
+    case faceID = "Face ID"
+    case touchID = "Touch ID"
+    case passcode = "Passcode"
+}
 extension UIDevice {
+   public static func checkSecurityType() -> BiometryType {
+        let myContext = LAContext()
+        myContext.localizedFallbackTitle = ""
+        let hasAuthenticationBiometrics = myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
+        let hasAuthentication = myContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+        
+        if #available(iOS 11.0, *) {
+            if hasAuthentication {
+                if hasAuthenticationBiometrics {
+                    switch myContext.biometryType {
+                    case .none: return .none
+                    case .faceID: return .faceID
+                    case .touchID: return .touchID
+                    @unknown default:
+                        fatalError()
+                    }
+                } else {
+                    return .passcode
+                }
+            } else {
+                return .none
+            }
+        } else {
+            if hasAuthentication {
+                if hasAuthenticationBiometrics {
+                    return .touchID
+                } else {
+                    return .passcode
+                }
+            } else {
+                return .none
+            }
+        }
+    }
     public enum EnumModel: String {
         case simulator     = "simulator/sandbox",
         //iPod
