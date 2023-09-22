@@ -11,5 +11,5 @@ class ShareConstant {
     //singleton setting
     static let shared = ShareConstant()
     private init() {}
-    var mg002Data: MG002Model.TranResData!
+    //var mg002Data: MG002Model.TranResData!
 }
