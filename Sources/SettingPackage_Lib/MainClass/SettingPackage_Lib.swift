@@ -6,4 +6,7 @@ public struct SettingPackage_Lib {
     public func createSettingVc()-> SettingVC {
         return SettingVC.instantiateFromStoryboard()
     }
+    public func setShareConstantData(data:MG002Model.TranResData){
+        ShareConstant.shared.mg002Data = data
+    }
 }
