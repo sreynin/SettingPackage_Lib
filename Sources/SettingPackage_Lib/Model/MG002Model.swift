@@ -10,13 +10,13 @@ import Foundation
 
 public struct SetMnuList: Decodable {
         //let c_mnu_child             : []
-        var c_available_service     : Bool = false
-        var c_mnu_url               : String = ""
-        var c_available_act         : String = ""
-        var c_mnu_ic_url            : String = ""
-        var c_mnu_id                : String = ""
-        var c_mnu_type_cd           : String = ""
-        var c_mnu_nm                : String = ""
+    public   var c_available_service     : Bool = false
+    public   var c_mnu_url               : String = ""
+    public    var c_available_act         : String = ""
+    public    var c_mnu_ic_url            : String = ""
+    public    var c_mnu_id                : String = ""
+    public     var c_mnu_type_cd           : String = ""
+    public    var c_mnu_nm                : String = ""
     
     public init(c_available_service: Bool, c_mnu_url: String, c_available_act: String, c_mnu_ic_url: String, c_mnu_id: String, c_mnu_type_cd: String, c_mnu_nm: String) {
         self.c_available_service = c_available_service
