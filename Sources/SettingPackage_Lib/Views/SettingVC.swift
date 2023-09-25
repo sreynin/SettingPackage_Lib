@@ -16,7 +16,9 @@ public class SettingVC: UIViewController, Instantiable {
     //--- private
     public var dataSoure : [SetMnuList]?
     public var backCompletion : (()-> Void)?
-    
+    public var pushToWebViewCompletion : ((_ urlStr:String)->Void)?
+    public var openBrowserCompletion :((_ urlStr:String)->Void)?
+    public var showAlertSettingCompletion : (()->Void)?
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -107,72 +109,83 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         return 52
     }
     
-//    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        let item = dataSoure[indexPath.row]
-//        
-//
-//        if item.c_available_service {
-//            // open new webview with url
-//            if item.c_mnu_type_cd == "WEB" {
-//                var fullURLSt = ""
-//                if item.c_mnu_url.contains("http://") || item.c_mnu_url.contains("https://") {
-//                    fullURLSt = item.c_mnu_url
-//                } else {
-//                    fullURLSt = G.Url.baseURL + item.c_mnu_url
-//                }
-//                self.pushWebKit(urlSt: fullURLSt)
-//            }
-//            
-//            //open browser with url
-//            else if item.c_mnu_type_cd == "HYBRID" {
-//                var fullURLSt = ""
-//                if item.c_mnu_url.contains("http://") || item.c_mnu_url.contains("https://") {
-//                    fullURLSt = item.c_mnu_url
-//                } else {
-//                    fullURLSt = G.Url.baseURL + item.c_mnu_url
-//                }
-//                openBrowser(urlSt: fullURLSt)
-//            }
-//            
-//            // push to each native view controller
-//            else {
-//                
-//                //maybe 화면잠금설장
-//                if item.c_mnu_id == "SET_TAB_1" {
-//                    gotoPIN4Manager()
-//                }
-//                
-//                //maybe 거래승인번호 설정
-//                else if item.c_mnu_id == "SET_TAB_2" {
-//                    if ShareConstant.shared.TRX_PWD_REG_YN == "Y" {
-//                        gotoPIN6Manager()
-//                    } else {
-//                        alertMessageConfirm(title: "안내",
-//                                            message: "거래승인번호를 설정하지 않았습니다. 지금 바로 설정하시겠습니까?",
-//                                            confirmButtonTitle: "설정하기",
-//                                            confirmHandler: { (confirmAction) in
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                                self.auth6(type: .SETUP_PIN_1ST_TIME)
-//                            }
-//                        }, cancelHandler: nil)
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if   let item = dataSoure?[indexPath.row] {
+            if item.c_available_service {
+                // open new webview with url
+                if item.c_mnu_type_cd == "WEB" {
+                    var fullURLSt = ""
+                    if item.c_mnu_url.contains("http://") || item.c_mnu_url.contains("https://") {
+                        fullURLSt = item.c_mnu_url
+                    } else {
+                        fullURLSt = G.Url.baseURL + item.c_mnu_url
+                    }
+                    //self.pushWebKit(urlSt: fullURLSt)
+                    if let pushToWebViewCompletion  = self.pushToWebViewCompletion {
+                        pushToWebViewCompletion(fullURLSt)
+                    }
+                }
+                
+                //open browser with url
+                else if item.c_mnu_type_cd == "HYBRID" {
+                    var fullURLSt = ""
+                    if item.c_mnu_url.contains("http://") || item.c_mnu_url.contains("https://") {
+                        fullURLSt = item.c_mnu_url
+                    } else {
+                        fullURLSt = G.Url.baseURL + item.c_mnu_url
+                    }
+                    //openBrowser(urlSt: fullURLSt)
+                    if let openBrowserCompletion = self.openBrowserCompletion {
+                        openBrowserCompletion(fullURLSt)
+                    }
+                }
+                
+                // push to each native view controller
+                else {
+                    
+                    //maybe 화면잠금설장
+                    if item.c_mnu_id == "SET_TAB_1" {
+                        gotoPIN4Manager()
+                    }
+                    
+                    //maybe 거래승인번호 설정
+//                    else if item.c_mnu_id == "SET_TAB_2" {
+//                        if self.TRX_PWD_REG_YN == "Y" {
+//                            gotoPIN6Manager()
+//                        } else {
+//                            alertMessageConfirm(title: "안내",
+//                                                message: "거래승인번호를 설정하지 않았습니다. 지금 바로 설정하시겠습니까?",
+//                                                confirmButtonTitle: "설정하기",
+//                                                confirmHandler: { (confirmAction) in
+//                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+//                                    self.auth6(type: .SETUP_PIN_1ST_TIME)
+//                                }
+//                            }, cancelHandler: nil)
+//                        }
 //                    }
-//                }
-//                
-//                //maybe 알림설정
-//                else if item.c_mnu_id == "SET_TAB_3" {
-//                    gotoAlarmSetting()
-//                }
-//                
-//                //maybe 이용해지
-//                else if item.c_mnu_id == "SET_TAB_7" {
-//                    gotoUsed()
-//                }
-//            }
-//        } else {
-//            alertMessageNoAction(content: item.c_available_act)
-//        }
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
+//
+//                    //maybe 알림설정
+//                    else if item.c_mnu_id == "SET_TAB_3" {
+//                        gotoAlarmSetting()
+//                    }
+//
+//                    //maybe 이용해지
+//                    else if item.c_mnu_id == "SET_TAB_7" {
+//                        gotoUsed()
+//                    }
+                }
+            } else {
+                //alertMessageNoAction(content: item.c_available_act)
+                if let showAlertSettingCompletion = self.showAlertSettingCompletion {
+                    showAlertSettingCompletion()
+                }
+            }
+        }
+        
+
+       
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
 }
