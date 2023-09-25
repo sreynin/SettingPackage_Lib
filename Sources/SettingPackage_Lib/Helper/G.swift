@@ -21,7 +21,7 @@ class G {
     static let isDevelopMode = false
         
     static let App = App_()
-    static let Url = Url_()
+    //static let Url = Url_()
     
     //static var merchantMapVC: MerchantMapVC?
     
@@ -75,42 +75,5 @@ class App_ {
     
     func isChangwon() -> Bool {
         return type == .Changwon
-    }
-}
-enum ServerType {
-    case Develop
-    case Live
-}
-class Url_ {
-    
-    var server = ServerType.Live
-    
-    var baseURL : String {
-        switch server {
-        case .Develop:
-            let scstring = SCString(with: NSArray.self)
-            let cipher = Data([0xE8, 0x92, 0xB2, 0x2F, 0xC4, 0xD1, 0x6B, 0x05, 0x36, 0x21, 0x3F, 0xD5, 0x93, 0x28, 0x3B, 0x10, 0xEC, 0x3A, 0xAA, 0x7B, 0x99, 0xE9, 0x6C, 0x78, 0xDD, 0xEC, 0xBD, 0xBC, 0xB1, 0x1E, 0xD0, 0xA3, 0xF2])
-            return scstring.get(cipher)
-        case .Live:
-            let scstring = SCString(with: NSArray.self)
-            let cipher = Data([0xE8, 0x92, 0xB2, 0x2F, 0x8D, 0xC4, 0x6B, 0x4E, 0x29, 0x32, 0x63, 0xD8, 0xD4, 0x33, 0x66, 0x1A, 0xF9, 0x24, 0xA4, 0x2C, 0xD5, 0xE3, 0x79, 0x26, 0xDA, 0xFF])
-            return scstring.get(cipher)
-        }
-    }
-    
-    let myGiftList = "/AFLTSRCH0000.act" // 보유상품권목록
-    let merchantList = "/AFLTSRCH0010.act" // 가맹점목록
-    let merchantDetail = "/AFLTSRCH0030.act" // 가맹점상세
-    
-    let SRCH_000001 = "/SRCH_000001.jct" //상품권 사용처별 가맹점 검색(지도용)
-    let SRCH_000002 = "/SRCH_000002.jct" //가맹점별 결제가능 상품권 정보 조회
-    
-
-    func isLive() -> Bool {
-        return server == .Live
-    }
-
-    func isDevelop() -> Bool {
-        return server == .Develop
     }
 }
