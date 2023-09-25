@@ -16,8 +16,8 @@ public class SettingVC: UIViewController, Instantiable {
     //--- private
     public var dataSoure : [SetMnuList]?
     public var backCompletion : (()-> Void)?
-    public var pushToWebViewCompletion : ((_ urlStr:String)->Void)?
-    public var openBrowserCompletion :((_ urlStr:String)->Void)?
+    public var pushToWebViewCompletion : ((_ itemData:SetMnuList)->Void)?
+    public var openBrowserCompletion :((_ itemData:SetMnuList)->Void)?
     public var showAlertSettingCompletion : (()->Void)?
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -115,29 +115,17 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             if item.c_available_service {
                 // open new webview with url
                 if item.c_mnu_type_cd == "WEB" {
-                    var fullURLSt = ""
-                    if item.c_mnu_url.contains("http://") || item.c_mnu_url.contains("https://") {
-                        fullURLSt = item.c_mnu_url
-                    } else {
-                        fullURLSt = G.Url.baseURL + item.c_mnu_url
-                    }
                     //self.pushWebKit(urlSt: fullURLSt)
                     if let pushToWebViewCompletion  = self.pushToWebViewCompletion {
-                        pushToWebViewCompletion(fullURLSt)
+                        pushToWebViewCompletion(item)
                     }
                 }
                 
                 //open browser with url
                 else if item.c_mnu_type_cd == "HYBRID" {
-                    var fullURLSt = ""
-                    if item.c_mnu_url.contains("http://") || item.c_mnu_url.contains("https://") {
-                        fullURLSt = item.c_mnu_url
-                    } else {
-                        fullURLSt = G.Url.baseURL + item.c_mnu_url
-                    }
                     //openBrowser(urlSt: fullURLSt)
                     if let openBrowserCompletion = self.openBrowserCompletion {
-                        openBrowserCompletion(fullURLSt)
+                        openBrowserCompletion(item)
                     }
                 }
                 

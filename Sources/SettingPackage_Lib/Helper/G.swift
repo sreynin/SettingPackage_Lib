@@ -77,7 +77,10 @@ class App_ {
         return type == .Changwon
     }
 }
-
+enum ServerType {
+    case Develop
+    case Live
+}
 class Url_ {
     
     var server = ServerType.Live
