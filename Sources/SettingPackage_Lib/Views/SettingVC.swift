@@ -15,8 +15,7 @@ public class SettingVC: UIViewController, Instantiable {
     
     //--- private
     public var dataSoure : [SetMnuList]?
-    
-    //public var itemData    : MG002Model.MainTabMnuList?
+    public var backCompletion : (()-> Void)?
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,6 +41,7 @@ public class SettingVC: UIViewController, Instantiable {
     
     @objc func backDidClicked() {
         //self.tabBarController?.selectTab(0)
+        if let backCompletion = self.backCompletion {backCompletion()}
      }
     
     private func bindingSettingListItemFromJsonFile() -> [SettingListItemModel] {
